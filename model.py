@@ -83,7 +83,7 @@ X_train, X_test, y_train, y_test = train_test_split(btc[features], btc[target], 
 
 model = RandomForestRegressor()
 model.fit(X_train, y_train)
-joblib.dump(model, "btc_model.pkl")
+joblib.dump(model, "models/btc_model.pkl")
 prediction = model.predict(X_test)
 
 mse = np.sqrt(mean_squared_error(y_test, prediction))
@@ -142,7 +142,7 @@ def train_model():
 
     model = joblib.load("btc_model.pkl")
     model.fit(new_btc[features], new_btc[target])
-    joblib.dump(model, "btc_model.pkl")
+    joblib.dump(model, "models/btc_model.pkl")
 
 scheduler = BackgroundScheduler()
 scheduler.add_job(train_model, 'interval', hours=24)
